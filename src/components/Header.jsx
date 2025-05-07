@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import ytLogo from "../images/yt-logo.png";
@@ -16,10 +16,17 @@ import Loader from "../shared/loader";
 
 const Header = () => {
     const [searchQuery, setSearchQuery] = useState("");
-
+    const [isLoading, setIsLoading] = useState(true);
     const { loading, mobileMenu, setMobileMenu } = useContext(Context);
-
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsLoading(false);
+        }, 1000);
+
+        return () => clearTimeout(timer);
+    }, []);
 
     const searchQueryHandler = (event) => {
         if (
@@ -41,7 +48,7 @@ const Header = () => {
         <div className="sticky top-0 z-10 flex flex-row items-center justify-between h-14 px-4 md:px-5 bg-black dark:bg-black">
             {loading && <Loader />}
 
-            <div className="flex h-5 items-center">
+            <div className={`flex h-5 items-center transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
                 {pageName !== "video" && (
                     <div
                         className="flex md:hidden md:mr-6 cursor-pointer items-center justify-center h-10 w-10 rounded-full hover:bg-[#303030]/[0.6]"
@@ -56,18 +63,18 @@ const Header = () => {
                 )}
                 <Link to="/" className="flex h-5 items-center">
                     <img
-                        className="h-full hidden md:inline"
+                        className={`h-full hidden md:inline transition-transform duration-500 ${isLoading ? 'scale-90' : 'scale-100'}`}
                         src={ytLogo}
                         alt="Youtube"
                     />
                     <img
-                        className="h-full md:hidden"
+                        className={`h-full md:hidden transition-transform duration-500 ${isLoading ? 'scale-90' : 'scale-100'}`}
                         src={ytLogoMobile}
                         alt="Youtube"
                     />
                 </Link>
             </div>
-            <div className="group flex items-center">
+            <div className={`group flex items-center transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
                 <div className="flex h-8 md:h-10 md:ml-10 md:pl-5 border border-[#303030] rounded-l-3xl group-focus-within:border-blue-500 md:group-focus-within:ml-5 md:group-focus-within:pl-0">
                     <div className="w-10 items-center justify-center hidden group-focus-within:md:flex">
                         <IoIosSearch className="text-white text-xl" />
@@ -88,7 +95,7 @@ const Header = () => {
                     <IoIosSearch className="text-white text-xl" />
                 </button>
             </div>
-            <div className="flex items-center">
+            <div className={`flex items-center transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
                 <div className="hidden md:flex">
                     <div className="flex items-center justify-center h-10 w-10 rounded-full hover:bg-[#303030]/[0.6]">
                         <RiVideoAddLine className="text-white text-xl cursor-pointer" />

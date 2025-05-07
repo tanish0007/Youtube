@@ -1,15 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import LeftNavMenuItem from "./LeftNavMenuItem";
 import { categories } from "../utils/constants";
 import { Context } from "../context/contextApi";
 
 const LeftNav = () => {
-    const { selectedCategory, setSelectedCategory, mobileMenu } =
-        useContext(Context);
-
+    const { selectedCategory, setSelectedCategory, mobileMenu, loading } = useContext(Context);
+    const [isLoading, setIsLoading] = useState(true);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (!loading) {
+            const timer = setTimeout(() => {
+                setIsLoading(false);
+            }, 300);
+            return () => clearTimeout(timer);
+        }
+    }, [loading]);
 
     const clickHandler = (name, type) => {
         switch (type) {
@@ -30,10 +37,14 @@ const LeftNav = () => {
                 mobileMenu ? "translate-x-0" : ""
             }`}
         >
-            <div className="flex px-5 flex-col">
-                {categories.map((item) => {
-                    return (
-                        <React.Fragment key={item.name}>
+            {/* Content with staggered loading */}
+            <div className={`flex px-5 flex-col transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+                {categories.map((item, index) => (
+                    <React.Fragment key={item.name}>
+                        <div 
+                            className={`transition-all duration-300 ${isLoading ? 'translate-x-4 opacity-0' : 'translate-x-0 opacity-100'}`}
+                            style={{ transitionDelay: isLoading ? '0ms' : `${index * 30}ms` }}
+                        >
                             <LeftNavMenuItem
                                 text={item.type === "home" ? "Home" : item.name}
                                 icon={item.icon}
@@ -47,14 +58,17 @@ const LeftNav = () => {
                                         : ""
                                 }`}
                             />
-                            {item.divider && (
-                                <hr className="my-5 border-white/[0.2]" />
-                            )}
-                        </React.Fragment>
-                    );
-                })}
+                        </div>
+                        {item.divider && (
+                            <hr className="my-5 border-white/[0.2]" />
+                        )}
+                    </React.Fragment>
+                ))}
                 <hr className="my-5 border-white/[0.2]" />
-                <div className="text-white/[0.5] text-[12px]">
+                <div 
+                    className={`text-white/[0.5] text-[12px] transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+                    style={{ transitionDelay: isLoading ? '0ms' : `${categories.length * 30 + 100}ms` }}
+                >
                     Developed by Tanish Jangra
                 </div>
             </div>

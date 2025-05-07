@@ -51,7 +51,7 @@ const Header = () => {
             <div className={`flex h-5 items-center transition-opacity duration-300 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
                 {pageName !== "video" && (
                     <div
-                        className="flex md:hidden md:mr-6 cursor-pointer items-center justify-center h-10 w-10 rounded-full hover:bg-[#303030]/[0.6]"
+                        className="flex md:hidden md:mr-6 cursor-pointer items-center justify-center h-10 w-10 rounded-full hover:bg-[#303030]/[0.6] mr-2"
                         onClick={mobileMenuToggle}
                     >
                         {mobileMenu ? (

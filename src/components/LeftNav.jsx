@@ -33,9 +33,14 @@ const LeftNav = () => {
 
     return (
         <div
-            className={`md:block w-[240px] overflow-y-auto h-full py-4 bg-black absolute md:relative z-10 translate-x-[-240px] md:translate-x-0 transition-all ${
-                mobileMenu ? "translate-x-0" : ""
-            }`}
+        className={`fixed md:block w-[240px] overflow-y-auto h-[calc(100vh-56px)] py-4 bg-black md:relative z-20 ${
+            mobileMenu ? "translate-x-0" : "translate-x-[-240px]"
+        } md:translate-x-0 transition-all duration-300 ease-in-out`}
+            
+            style={{
+                scrollbarWidth: 'thin',
+                scrollbarColor: '#606060 transparent',
+            }}
         >
             {/* Content with staggered loading */}
             <div className={`flex px-5 flex-col transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>

@@ -5,7 +5,7 @@ import { BsFillCheckCircleFill } from "react-icons/bs";
 
 import VideoLength from "../shared/videoLength";
 
-const SearchResultVedioCard = ({ video }) => {
+const SearchResultVideoCard = ({ video }) => {
     return (
         <Link to={`/video/${video?.videoId}`}>
             <div className="flex flex-col md:flex-row mb-8 md:mb-3 lg:hover:bg-white/[0.1] rounded-xl md:p-4">
@@ -62,4 +62,4 @@ const SearchResultVedioCard = ({ video }) => {
     );
 };
 
-export default SearchResultVedioCard;
+export default SearchResultVideoCard;

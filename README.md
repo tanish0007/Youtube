@@ -65,6 +65,54 @@ This project uses the YouTube API v3 via RapidAPI. To set up your own API key:
     3. Get your API key and host from the dashboard
     4. Add them to your `.env` file as shown above
 
+## Project Structure
+
+```plaintext
+Youtube/
+├── node_modules/
+├── public/
+│   ├── Icon.png
+│   ├── index.html
+│   ├── manifest.json
+│   ├── robots.txt
+├── src/
+│   ├── components/
+│   │   ├── Feed.jsx
+│   │   ├── Header.jsx
+│   │   ├── LeftNav.jsx
+│   │   ├── LeftNavMenuItem.jsx
+│   │   ├── SearchResult.jsx
+│   │   ├── SearchResultVideoCard.jsx
+│   │   ├── SuggestionVideoCard.jsx
+│   │   └── VideoCard.jsx
+│   ├── context/
+│   │   └── contextApi.js
+│   ├── images/
+│   │   ├── TanishJangra.jpg
+│   │   ├── yt-logo-mobile.png
+│   │   └── yt-logo.png
+│   ├── shared/
+│   │   ├── loader.jsx
+│   │   └── videoLength.jsx
+│   ├── utils/
+│   │   ├── api.js
+│   │   └── constants.js
+│   ├── App.css
+│   ├── App.js
+│   ├── index.css
+│   ├── index.js
+│   ├── reportWebVitals.js
+│   └── setupTests.js
+├── .env
+├── .gitignore
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+├── README.md
+├── Screenshot.png
+└── tailwind.config.js
+```
+
 ## Contributing
 
 Contributions are welcome! Please follow these steps:

@@ -7,7 +7,7 @@ import { abbreviateNumber } from "js-abbreviation-number";
 
 import { fetchDataFromApi } from "../utils/api";
 import { Context } from "../context/contextApi";
-import SuggestionVedioCard from "./SuggestionVideoCard";
+import SuggestionVideoCard from "./SuggestionVideoCard";
 
 const VideoDetails = () => {
     const [video, setVideo] = useState();
@@ -100,7 +100,7 @@ const VideoDetails = () => {
                     {relatedVideos?.contents?.map((item, index) => {
                         if (item?.type !== "video") return false;
                         return (
-                            <SuggestionVedioCard
+                            <SuggestionVideoCard
                                 key={index}
                                 video={item?.video}
                             />

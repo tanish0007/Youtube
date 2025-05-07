@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { fetchDataFromApi } from "../utils/api";
 import { Context } from "../context/contextApi";
 import LeftNav from "./LeftNav";
-import SearchResultVedioCard from "./SearchResultVideoCard";
+import SearchResultVideoCard from "./SearchResultVideoCard";
 
 const SearchResult = () => {
     const [result, setResult] = useState();
@@ -34,7 +34,7 @@ const SearchResult = () => {
                         if (item?.type !== "video") return false;
                         let video = item.video;
                         return (
-                            <SearchResultVedioCard
+                            <SearchResultVideoCard
                                 key={video.videoId}
                                 video={video}
                             />
